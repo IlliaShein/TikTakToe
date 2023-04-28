@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace TilTakToe
 {
     public partial class MainWindow : Window
     {
+        public bool CrossTurn { get; set; }
+
         public MainWindow()
         {
+            CrossTurn = true;
             InitializeComponent();
         }
 
@@ -21,7 +21,13 @@ namespace TilTakToe
         {
             if (sender is Border border)
             {
-                border.Background = new SolidColorBrush(Color.FromArgb(0x54, 0xFF, 0xFF, 0x00));
+                foreach (var child in MainGrid.Children)
+                {
+                    if (child is Image img && Grid.GetRow(img) == Grid.GetRow(border) && Grid.GetColumn(img) == Grid.GetColumn(border) && img.Source == null)
+                    {
+                        border.Background = new SolidColorBrush(Color.FromArgb(0x54, 0xFF, 0xFF, 0x00));
+                    }
+                }
             }
         }
 
@@ -37,7 +43,27 @@ namespace TilTakToe
         {
             if (sender is Border border)
             {
-                border.Background = new SolidColorBrush(Color.FromArgb(0x84, 0xFF, 0xFF, 0x00));
+                string toePath = @"C:\Users\Illy\source\repos\TilTakToe\Images\toe.png";
+                string crossPath = @"C:\Users\Illy\source\repos\TilTakToe\Images\cross.png";
+                foreach (var child in MainGrid.Children)
+                {
+                    if (child is Image img && Grid.GetRow(img) == Grid.GetRow(border) && Grid.GetColumn(img) == Grid.GetColumn(border) && img.Source == null)
+                    {
+                        border.Background = new SolidColorBrush(Color.FromArgb(0x84, 0xFF, 0xFF, 0x00));
+
+                        if (CrossTurn)
+                        {
+                            img.Source = new BitmapImage(new Uri(crossPath));
+                            CrossTurn = !CrossTurn;
+                        }
+                        else
+                        {
+                            img.Source = new BitmapImage(new Uri(toePath));
+                            CrossTurn = !CrossTurn;
+                        }
+                        break;
+                    }
+                }
             }
         }
 
@@ -53,6 +79,7 @@ namespace TilTakToe
         {
             Application.Current.Shutdown();
         }
+
         private void MinimizeButon_Click(object sender, RoutedEventArgs e)
         {
             StartWindow.WindowState = WindowState.Minimized;

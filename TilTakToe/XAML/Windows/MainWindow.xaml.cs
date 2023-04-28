@@ -1,8 +1,6 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TilTakToe.Classes.StaticClasses;
 
@@ -26,7 +24,7 @@ namespace TilTakToe
                 {
                     if (child is Image img && Grid.GetRow(img) == Grid.GetRow(border) && Grid.GetColumn(img) == Grid.GetColumn(border) && img.Source == null)
                     {
-                        border.Background = new SolidColorBrush(Color.FromArgb(0x54, 0xFF, 0xFF, 0x00));
+                        border.Background = TTTColors.GetCursorAboceCellColor();
                     }
                 }
             }
@@ -36,7 +34,7 @@ namespace TilTakToe
         {
             if (sender is Border border)
             {
-                border.Background = Brushes.White;
+                border.Background = TTTColors.GetNeutralCellColor();
             }
         }
 
@@ -48,7 +46,7 @@ namespace TilTakToe
                 {
                     if (child is Image img && Grid.GetRow(img) == Grid.GetRow(border) && Grid.GetColumn(img) == Grid.GetColumn(border) && img.Source == null)
                     {
-                        border.Background = new SolidColorBrush(Color.FromArgb(0x84, 0xFF, 0xFF, 0x00));
+                        border.Background = TTTColors.GetCellWhileClickingColor();
 
                         if (CrossTurn)
                         {
@@ -70,7 +68,7 @@ namespace TilTakToe
         {
             if (sender is Border border)
             {
-                border.Background = new SolidColorBrush(Color.FromArgb(0x54, 0xFF, 0xFF, 0x00));
+                border.Background = TTTColors.GetCursorAboceCellColor();
             }
         }
 

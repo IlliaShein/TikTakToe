@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using TilTakToe.Classes.StaticClasses;
 
 namespace TilTakToe
 {
@@ -43,8 +44,6 @@ namespace TilTakToe
         {
             if (sender is Border border)
             {
-                string toePath = @"C:\Users\Illy\source\repos\TilTakToe\Images\toe.png";
-                string crossPath = @"C:\Users\Illy\source\repos\TilTakToe\Images\cross.png";
                 foreach (var child in MainGrid.Children)
                 {
                     if (child is Image img && Grid.GetRow(img) == Grid.GetRow(border) && Grid.GetColumn(img) == Grid.GetColumn(border) && img.Source == null)
@@ -53,12 +52,12 @@ namespace TilTakToe
 
                         if (CrossTurn)
                         {
-                            img.Source = new BitmapImage(new Uri(crossPath));
+                            img.Source = new BitmapImage(ImagesURI.GetCrosPath());
                             CrossTurn = !CrossTurn;
                         }
                         else
                         {
-                            img.Source = new BitmapImage(new Uri(toePath));
+                            img.Source = new BitmapImage(ImagesURI.GetToePath());
                             CrossTurn = !CrossTurn;
                         }
                         break;

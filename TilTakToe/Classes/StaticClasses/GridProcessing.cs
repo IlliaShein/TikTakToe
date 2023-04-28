@@ -16,7 +16,7 @@ namespace TilTakToe.Classes.StaticClasses
                 {
                     return CheckRow(field, i);
                 }
-                if (CheckRow(field, i) != GameResult.Draw)
+                if (CheckColumn(field, i) != GameResult.Draw)
                 {
                     return CheckColumn(field, i);
                 }
@@ -92,7 +92,7 @@ namespace TilTakToe.Classes.StaticClasses
                 {
                     crosses++;
                 }
-                else if (field[col, j] == 2)
+                else if (field[j, col] == 2)
                 {
                     toes++;
                 }

@@ -14,6 +14,7 @@ namespace TilTakToe
         {
             CrossTurn = true;
             InitializeComponent();
+            MessageTextBlock.Text = WhosTurn();
         }
 
         private void Border_MouseEnter(object sender, MouseEventArgs e)
@@ -48,6 +49,8 @@ namespace TilTakToe
 
             Image image = CellProcessing.GetCellImage(MainGrid, (Border)sender);
             SetPathToCrossOrToe(image);
+
+            WriteStatus();
         }
 
         private void SetPathToCrossOrToe(Image image)
@@ -61,6 +64,30 @@ namespace TilTakToe
             {
                 image.Source = new BitmapImage(ImagesURI.GetToePath());
                 CrossTurn = !CrossTurn;
+            }
+        }
+
+        private void WriteStatus()
+        {
+            if (CellProcessing.IsGridFilled(MainGrid))
+            {
+                MessageTextBlock.Text = "Game end";
+            }
+            else
+            {
+                MessageTextBlock.Text = WhosTurn();
+            }
+        }
+
+        private string WhosTurn()
+        {
+            if (CrossTurn)
+            {
+                return "Cross move";
+            }
+            else
+            {
+                return "Toe move";
             }
         }
 

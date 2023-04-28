@@ -18,56 +18,49 @@ namespace TilTakToe
 
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (sender is Border border)
+            if(CellProcessing.IscellEmpty(MainGrid,(Border)sender))
             {
-                foreach (var child in MainGrid.Children)
-                {
-                    if (child is Image img && Grid.GetRow(img) == Grid.GetRow(border) && Grid.GetColumn(img) == Grid.GetColumn(border) && img.Source == null)
-                    {
-                        border.Background = TTTColors.GetCursorAboceCellColor();
-                    }
-                }
+                ((Border)sender).Background = TTTColors.GetCursorAboceCellColor();
             }
         }
 
         private void Border_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (sender is Border border)
-            {
-                border.Background = TTTColors.GetNeutralCellColor();
-            }
+            ((Border)sender).Background = TTTColors.GetNeutralCellColor();
         }
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (sender is Border border)
+            if (CellProcessing.IscellEmpty(MainGrid, (Border)sender))
             {
-                border.Background = TTTColors.GetCellWhileClickingColor();
+                ((Border)sender).Background = TTTColors.GetCellWhileClickingColor();
             }
         }
 
         private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (sender is Border border)
+            if (!CellProcessing.IscellEmpty(MainGrid, (Border)sender))
             {
-                foreach (var child in MainGrid.Children)
-                {
-                    if (child is Image img && Grid.GetRow(img) == Grid.GetRow(border) && Grid.GetColumn(img) == Grid.GetColumn(border) && img.Source == null)
-                    {
-                        border.Background = TTTColors.GetNeutralCellColor();
-                        if (CrossTurn)
-                        {
-                            img.Source = new BitmapImage(ImagesURI.GetCrosPath());
-                            CrossTurn = !CrossTurn;
-                        }
-                        else
-                        {
-                            img.Source = new BitmapImage(ImagesURI.GetToePath());
-                            CrossTurn = !CrossTurn;
-                        }
-                        break;
-                    }
-                }
+                return;
+            }
+
+            ((Border)sender).Background = TTTColors.GetNeutralCellColor();
+
+            Image image = CellProcessing.GetCellImage(MainGrid, (Border)sender);
+            SetPathToCrossOrToe(image);
+        }
+
+        private void SetPathToCrossOrToe(Image image)
+        {
+            if (CrossTurn)
+            {
+                image.Source = new BitmapImage(ImagesURI.GetCrosPath());
+                CrossTurn = !CrossTurn;
+            }
+            else
+            {
+                image.Source = new BitmapImage(ImagesURI.GetToePath());
+                CrossTurn = !CrossTurn;
             }
         }
 

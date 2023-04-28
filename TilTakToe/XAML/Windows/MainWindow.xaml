@@ -55,14 +55,14 @@
         <Button Name="MultiplayerButton"  Grid.Column="0" Grid.Row="1" Content="Multiplayer" Style="{StaticResource GrayButtonStyle}" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="6"/>
         <Button Name="SettingsButton" Grid.Column="3" Grid.Row="1" Content="Settings"  Style="{StaticResource GrayButtonStyle}" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="6"/>
 
-        <Image Grid.Column="0" Grid.Row="2" Margin="10" Source="" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseLeftButtonUp="Border_MouseLeftButtonUp"/>
-        <Image Grid.Column="1" Grid.Row="2" Margin="10" Source="" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseLeftButtonUp="Border_MouseLeftButtonUp"/>
-        <Image Grid.Column="2" Grid.Row="2" Margin="10" Source="" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseLeftButtonUp="Border_MouseLeftButtonUp"/>
-        <Image Grid.Column="0" Grid.Row="3" Margin="10" Source="" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseLeftButtonUp="Border_MouseLeftButtonUp"/>
-        <Image Grid.Column="1" Grid.Row="3" Margin="10" Source="" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseLeftButtonUp="Border_MouseLeftButtonUp"/>
-        <Image Grid.Column="2" Grid.Row="3" Margin="10" Source="" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseLeftButtonUp="Border_MouseLeftButtonUp"/>
-        <Image Grid.Column="0" Grid.Row="4" Margin="10" Source="" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseLeftButtonUp="Border_MouseLeftButtonUp"/>
-        <Image Grid.Column="1" Grid.Row="4" Margin="10" Source="" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseLeftButtonUp="Border_MouseLeftButtonUp"/>
+        <Image Grid.Column="0" Grid.Row="2" Margin="10" />
+        <Image Grid.Column="1" Grid.Row="2" Margin="10" />
+        <Image Grid.Column="2" Grid.Row="2" Margin="10" />
+        <Image Grid.Column="0" Grid.Row="3" Margin="10" />
+        <Image Grid.Column="1" Grid.Row="3" Margin="10" />
+        <Image Grid.Column="2" Grid.Row="3" Margin="10" />
+        <Image Grid.Column="0" Grid.Row="4" Margin="10" />
+        <Image Grid.Column="1" Grid.Row="4" Margin="10" />
         <Image Grid.Column="2" Grid.Row="4" Margin="10" Source="" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown" MouseLeftButtonUp="Border_MouseLeftButtonUp"/>
     </Grid>
 </Window>

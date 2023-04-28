@@ -42,12 +42,19 @@ namespace TilTakToe
         {
             if (sender is Border border)
             {
+                border.Background = TTTColors.GetCellWhileClickingColor();
+            }
+        }
+
+        private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Border border)
+            {
                 foreach (var child in MainGrid.Children)
                 {
                     if (child is Image img && Grid.GetRow(img) == Grid.GetRow(border) && Grid.GetColumn(img) == Grid.GetColumn(border) && img.Source == null)
                     {
-                        border.Background = TTTColors.GetCellWhileClickingColor();
-
+                        border.Background = TTTColors.GetNeutralCellColor();
                         if (CrossTurn)
                         {
                             img.Source = new BitmapImage(ImagesURI.GetCrosPath());
@@ -61,14 +68,6 @@ namespace TilTakToe
                         break;
                     }
                 }
-            }
-        }
-
-        private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is Border border)
-            {
-                border.Background = TTTColors.GetCursorAboceCellColor();
             }
         }
 

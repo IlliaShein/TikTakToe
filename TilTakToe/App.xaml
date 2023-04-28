@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:TilTakToe"
              StartupUri="XAML/Windows/MainWindow.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>

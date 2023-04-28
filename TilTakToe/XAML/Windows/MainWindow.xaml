@@ -9,6 +9,14 @@
         Title="MainWindow" Height="450" Width="400"
         WindowStyle="None">
 
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/XAML/ResourceDictionaries/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <Grid x:Name="MainGrid">
         
         <Grid.ColumnDefinitions>
@@ -40,10 +48,10 @@
         <TextBlock x:Name="GameNameTextBlock" Grid.Column="0" Grid.Row="0" Text="TikTakToe" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="16" FontFamily="Consolas" Foreground="#FF4C4C4C" Margin="15,0,0,0" MouseDown="MenuBorder_MouseDown"/>
         <TextBlock x:Name="GameCountTextBlock" Grid.Column="1" Grid.Row="0" Text="" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="18" FontFamily="Arial Black" Foreground="#FF4C4C4C" MouseDown="MenuBorder_MouseDown"/>
         <TextBlock x:Name="MessageTextBlock" Grid.Column="1" Grid.Row="1" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Consolas" Foreground="#FF4C4C4C" FontWeight="Bold" MouseDown="MenuBorder_MouseDown"/>
-        <Button Name="ExitButon" Grid.Column="2" Grid.Row="0" Width="25" Height="25" Content="x" Background="#FFDA4545" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="100,0,0,0" Click="ExitButon_Click"/>
-        <Button Name="MinimizeButon" Grid.Column="2" Grid.Row="0" Width="25" Height="25" Content="_" Background="#FF457CDA" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="40,0,0,0" Click="MinimizeButon_Click"/>
+        <Button Name="ExitButon" Grid.Column="2" Grid.Row="0" Width="25" Height="25" Content="x" Style="{StaticResource RedButtonStyle}" FontSize="16" FontFamily="Consolas" Margin="100,0,0,0" Click="ExitButon_Click"/>
+        <Button Name="MinimizeButon" Grid.Column="2" Grid.Row="0" Width="25" Height="25" Content="_"  Style="{StaticResource BlueButtonStyle}" FontSize="16" FontFamily="Consolas" Margin="40,0,0,0" Click="MinimizeButon_Click"/>
 
-        <Button Name="MultiplayerButton" Grid.Column="0" Grid.Row="1" Content="Multiplayer" Background="#FF4C4C4C" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="6"/>
-        <Button Name="SettingsButton" Grid.Column="3" Grid.Row="1" Content="Settings" Background="#FF4C4C4C" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="6"/>
+        <Button Name="MultiplayerButton"  Grid.Column="0" Grid.Row="1" Content="Multiplayer" Style="{StaticResource GrayButtonStyle}" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="6"/>
+        <Button Name="SettingsButton" Grid.Column="3" Grid.Row="1" Content="Settings"  Style="{StaticResource GrayButtonStyle}" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="6"/>
     </Grid>
 </Window>

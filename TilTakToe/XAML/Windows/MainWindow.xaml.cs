@@ -48,34 +48,69 @@ namespace TilTakToe
             ((Border)sender).Background = TTTColors.GetNeutralCellColor();
 
             Image image = CellProcessing.GetCellImage(MainGrid, (Border)sender);
-            SetPathToCrossOrToe(image);
+            SetPathToCrossOrToeImage(image);
 
             WriteStatus();
         }
-
-        private void SetPathToCrossOrToe(Image image)
+        private void SetPathToCrossOrToeImage(Image image)
         {
             if (CrossTurn)
             {
-                image.Source = new BitmapImage(ImagesURI.GetCrosPath());
+                image.Source = ImagesURI.GetCrosPath();
                 CrossTurn = !CrossTurn;
             }
             else
             {
-                image.Source = new BitmapImage(ImagesURI.GetToePath());
+                image.Source = ImagesURI.GetToePath();
                 CrossTurn = !CrossTurn;
             }
         }
 
         private void WriteStatus()
         {
-            if (CellProcessing.IsGridFilled(MainGrid))
+            GameResult result = GridProcessing.GetWinner(MainGrid);
+
+            if (GridProcessing.IsGridFilled(MainGrid))
             {
-                MessageTextBlock.Text = "Game end";
+                WriteStatusWhenGridFilled(result);
+                return;
+            }
+            
+            if(result == GameResult.Draw)
+            {
+                MessageTextBlock.Text = WhosTurn();
             }
             else
             {
-                MessageTextBlock.Text = WhosTurn();
+                WriteStatusBeforeGridFilling(result);
+            }
+        }
+
+        private void WriteStatusWhenGridFilled(GameResult result)
+        {
+            if (result == GameResult.Draw)
+            {
+                MessageTextBlock.Text = "It's draw";
+            }
+            else if (result == GameResult.Cross)
+            {
+                MessageTextBlock.Text = "Crosses win";
+            }
+            else // result == GameResult.Toe
+            {
+                MessageTextBlock.Text = "Toes win";
+            }
+        }
+
+        private void WriteStatusBeforeGridFilling(GameResult result)
+        {
+            if (result == GameResult.Cross)
+            {
+                MessageTextBlock.Text = "Crosses win";
+            }
+            else // result == GameResult.Toe
+            {
+                MessageTextBlock.Text = "Toes win";
             }
         }
 

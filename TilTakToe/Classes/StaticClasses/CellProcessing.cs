@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace TilTakToe.Classes.StaticClasses
 {
-    static public class CellProcessing
+    public  static class CellProcessing
     {
-        static public bool IscellEmpty<T>(Grid grid, T Object) where T : UIElement
+        public  static bool IscellEmpty<T>(Grid grid, T Object) where T : UIElement
         {
             foreach (var child in grid.Children)
             {
@@ -18,7 +18,7 @@ namespace TilTakToe.Classes.StaticClasses
             return false;
         }
 
-        static public Image GetCellImage<T>(Grid grid, T Object) where T : UIElement
+        public  static Image GetCellImage<T>(Grid grid, T Object) where T : UIElement
         {
             foreach (var child in grid.Children)
             {

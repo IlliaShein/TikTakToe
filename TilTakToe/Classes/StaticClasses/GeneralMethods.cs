@@ -2,19 +2,19 @@
 
 namespace TilTakToe.Classes.StaticClasses
 {
-    static public class GeneralMethods
+    public static class GeneralMethods
     {
-        static public void CloseWindow()
+        public static void CloseWindow()
         {
             Application.Current.Shutdown();
         }
 
-        static public void MinimizeWindow(Window window)
+        public static void MinimizeWindow(Window window)
         {
             window.WindowState = WindowState.Minimized;
         }
 
-        static public void HoldAndMoveWindow(Window window)
+        public  static void HoldAndMoveWindow(Window window)
         {
             window.DragMove();
         }

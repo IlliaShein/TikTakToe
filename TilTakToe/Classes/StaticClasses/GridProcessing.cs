@@ -4,9 +4,9 @@ using System.Windows.Controls;
 
 namespace TilTakToe.Classes.StaticClasses
 {
-    static public class GridProcessing
+    public  static class GridProcessing
     {
-        static public GameResult GetWinner(Grid grid)
+        public  static GameResult GetWinner(Grid grid)
         {
             int[,] field = GetGameFieldAsArray(grid);
 
@@ -25,7 +25,7 @@ namespace TilTakToe.Classes.StaticClasses
             return CheckDiagonals(field);
         }
 
-        static private int[,] GetGameFieldAsArray(Grid grid)
+        private static int[,] GetGameFieldAsArray(Grid grid)
         {
             int[,] field = new int[3, 3];
 
@@ -44,7 +44,7 @@ namespace TilTakToe.Classes.StaticClasses
             return field;
         }
 
-        static private void FillCell(UIElement element , int[,] field, int row, int col)
+        private static void FillCell(UIElement element , int[,] field, int row, int col)
         {
             if (((Image)element).Source == null)
             {
@@ -61,7 +61,7 @@ namespace TilTakToe.Classes.StaticClasses
             }
         }
 
-        static private GameResult CheckRow(int[,] field , int row)
+        private static GameResult CheckRow(int[,] field , int row)
         {
             int crosses = 0;
             int toes = 0;
@@ -81,7 +81,7 @@ namespace TilTakToe.Classes.StaticClasses
             return GetResult(crosses, toes);
         }
 
-        static private GameResult CheckColumn(int[,] field, int col)
+        private static GameResult CheckColumn(int[,] field, int col)
         {
             int crosses = 0;
             int toes = 0;
@@ -101,7 +101,7 @@ namespace TilTakToe.Classes.StaticClasses
             return GetResult(crosses, toes);
         }
 
-        static private GameResult GetResult(int crosses, int toes)
+        private static GameResult GetResult(int crosses, int toes)
         {
             if (crosses == 3)
             {
@@ -117,7 +117,7 @@ namespace TilTakToe.Classes.StaticClasses
             }
         }
 
-        static private GameResult CheckDiagonals(int[,] field)
+        private static GameResult CheckDiagonals(int[,] field)
         {
             if (field[0, 0] == 1 && field[1, 1] == 1 && field[2, 2] == 1)
             {
@@ -140,7 +140,7 @@ namespace TilTakToe.Classes.StaticClasses
             return GameResult.Draw;
         }
 
-        static public bool IsGridFilled(Grid grid)
+        public  static bool IsGridFilled(Grid grid)
         {
             int images = 0;
 

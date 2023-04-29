@@ -2,19 +2,19 @@
 
 namespace TilTakToe.Classes.StaticClasses
 {
-    static public class TTTColors
+    public  static class TTTColors
     {
-        static public SolidColorBrush GetCellWhileClickingColor()
+        public  static SolidColorBrush GetCellWhileClickingColor()
         {
             return new SolidColorBrush(Color.FromArgb(0x84, 0xFF, 0xFF, 0x00));
         }
 
-        static public SolidColorBrush GetCursorAboceCellColor()
+        public  static SolidColorBrush GetCursorAboceCellColor()
         {
             return new SolidColorBrush(Color.FromArgb(0x54, 0xFF, 0xFF, 0x00));
         }
 
-        static public SolidColorBrush GetNeutralCellColor()
+        public  static SolidColorBrush GetNeutralCellColor()
         {
             return new SolidColorBrush(Color.FromRgb(0xFF, 0xFF, 0xFF));
         }

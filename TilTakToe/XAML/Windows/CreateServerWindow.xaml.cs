@@ -30,8 +30,11 @@ namespace TilTakToe.XAML.Windows
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             MultiplayerMenu multiplayerMenu = new MultiplayerMenu();
+            multiplayerMenu.Left = this.Left;
+            multiplayerMenu.Top = this.Top;
+
             multiplayerMenu.Show();
-            Close();
+            this.Close();
         }
         private void Create_Click(object sender, RoutedEventArgs e)
         {

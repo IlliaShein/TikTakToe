@@ -35,7 +35,7 @@
         <Border x:Name="ButonsZoneBorder" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Background="#DDDDDD" MouseDown="MenuBorder_MouseDown"/>
         <Border x:Name="ServerCreation" Grid.Row="2" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="3" Background="White" MouseDown="MenuBorder_MouseDown"/>
 
-        <TextBlock x:Name="GameNameTextBlock" Grid.Column="0" Grid.Row="0" Text="TikTakToe" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="16" FontFamily="Consolas" Foreground="#FF4C4C4C" Margin="15,0,0,0"/>
+        <TextBlock x:Name="GameNameTextBlock" Grid.Column="0" Grid.Row="0" Text="TikTakToe" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="16" FontFamily="Consolas" Foreground="#FF4C4C4C" Margin="15,0,0,0" MouseDown="MenuBorder_MouseDown"/>
         <Button Name="ExitButon" Grid.Column="2" Grid.Row="0" Width="25" Height="25" Content="x" Style="{StaticResource RedButtonStyle}" FontSize="16" FontFamily="Consolas" Margin="100,0,0,0" Click="ExitButon_Click"/>
         <Button Name="MinimizeButon" Grid.Column="2" Grid.Row="0" Width="25" Height="25" Content="_"  Style="{StaticResource BlueButtonStyle}" FontSize="16" FontFamily="Consolas" Margin="40,0,0,0" Click="MinimizeButon_Click"/>
 

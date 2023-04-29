@@ -42,16 +42,23 @@ namespace TilTakToe.XAML.Windows
             tcpSocket.Close();
 
             MainWindow mainWindow = new MainWindow();
+            mainWindow.Left = this.Left;
+            mainWindow.Top = this.Top;
             mainWindow.Show();
-            Close();
+
+            this.Close();
         }
 
         private void CreateGameButton_Click(object sender, RoutedEventArgs e)
         {
             tcpSocket.Close();
+
             CreateServerWindow createServerWindow = new CreateServerWindow();
+            createServerWindow.Left = this.Left;
+            createServerWindow.Top = this.Top;
             createServerWindow.Show();
-            Close();
+
+            this.Close();
         }
 
         public async void ReceiveInfoAboutServerAsync(int port, string ip)

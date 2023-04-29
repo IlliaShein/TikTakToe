@@ -144,8 +144,11 @@ namespace TilTakToe
         private void MultiplayerButton_Click(object sender, RoutedEventArgs e)
         {
             MultiplayerMenu multiplayerMenu = new MultiplayerMenu();
+            multiplayerMenu.Left = this.Left;
+            multiplayerMenu.Top = this.Top;
             multiplayerMenu.Show();
-            Close();
+
+            this.Close();
         }
     }
 }

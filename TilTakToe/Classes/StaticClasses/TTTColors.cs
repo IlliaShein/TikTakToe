@@ -13,6 +13,7 @@ namespace TilTakToe.Classes.StaticClasses
         {
             return new SolidColorBrush(Color.FromArgb(0x54, 0xFF, 0xFF, 0x00));
         }
+
         static public SolidColorBrush GetNeutralCellColor()
         {
             return new SolidColorBrush(Color.FromRgb(0xFF, 0xFF, 0xFF));

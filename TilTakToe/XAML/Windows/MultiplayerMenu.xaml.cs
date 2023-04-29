@@ -9,7 +9,11 @@ namespace TilTakToe.XAML.Windows
         public MultiplayerMenu()
         {
             InitializeComponent();
+            Client.ReceiveInfoAsync(ClientReceive);
+            ClientReceive.Text = Client.test.Text;
         }
+
+      
 
         private void ExitButon_Click(object sender, RoutedEventArgs e)
         {

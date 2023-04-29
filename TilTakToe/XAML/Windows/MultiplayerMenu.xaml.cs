@@ -32,5 +32,12 @@ namespace TilTakToe.XAML.Windows
             mainWindow.Show();
             Close();
         }
+
+        private void CreateGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            CreateServerWindow createServerWindow = new CreateServerWindow();
+            createServerWindow.Show();
+            Close();
+        }
     }
 }

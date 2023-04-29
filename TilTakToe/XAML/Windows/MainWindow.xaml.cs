@@ -128,17 +128,17 @@ namespace TilTakToe
 
         private void ExitButon_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            GeneralMethods.CloseWindow();
         }
 
         private void MinimizeButon_Click(object sender, RoutedEventArgs e)
         {
-            StartWindow.WindowState = WindowState.Minimized;
+            GeneralMethods.MinimizeWindow(StartWindow);
         }
 
         private void MenuBorder_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            GeneralMethods.HoldAndMoveWindow(StartWindow);
         }
     }
 }

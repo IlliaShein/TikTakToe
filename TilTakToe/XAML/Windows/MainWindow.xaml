@@ -52,7 +52,7 @@
         <Button Name="ExitButon" Grid.Column="2" Grid.Row="0" Width="25" Height="25" Content="x" Style="{StaticResource RedButtonStyle}" FontSize="16" FontFamily="Consolas" Margin="100,0,0,0" Click="ExitButon_Click"/>
         <Button Name="MinimizeButon" Grid.Column="2" Grid.Row="0" Width="25" Height="25" Content="_"  Style="{StaticResource BlueButtonStyle}" FontSize="16" FontFamily="Consolas" Margin="40,0,0,0" Click="MinimizeButon_Click"/>
 
-        <Button Name="MultiplayerButton"  Grid.Column="0" Grid.Row="1" Content="Multiplayer" Style="{StaticResource GrayButtonStyle}" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="6"/>
+        <Button Name="MultiplayerButton"  Grid.Column="0" Grid.Row="1" Content="Multiplayer" Style="{StaticResource GrayButtonStyle}" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="6" Click="MultiplayerButton_Click"/>
         <Button Name="SettingsButton" Grid.Column="3" Grid.Row="1" Content="Settings"  Style="{StaticResource GrayButtonStyle}" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="6"/>
 
         <Image Grid.Column="0" Grid.Row="2" Margin="10" />

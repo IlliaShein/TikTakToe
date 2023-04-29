@@ -25,5 +25,12 @@ namespace TilTakToe.XAML.Windows
         {
             GeneralMethods.HoldAndMoveWindow(MultiplayerWindow);
         }
+
+        private void SingleplayerButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
+        }
     }
 }

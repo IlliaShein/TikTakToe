@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TilTakToe.Classes.StaticClasses;
+using TilTakToe.XAML.Windows;
 
 namespace TilTakToe
 {
@@ -139,6 +140,13 @@ namespace TilTakToe
         private void MenuBorder_MouseDown(object sender, MouseButtonEventArgs e)
         {
             GeneralMethods.HoldAndMoveWindow(StartWindow);
+        }
+
+        private void MultiplayerButton_Click(object sender, RoutedEventArgs e)
+        {
+            MultiplayerMenu multiplayerMenu = new MultiplayerMenu();
+            multiplayerMenu.Show();
+            Close();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -6,12 +7,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TilTakToe.Classes.StaticClasses;
+using TilTakToe.Classes.StaticClasses.Web;
 
 namespace TilTakToe.XAML.Windows
 {
     public partial class MultiplayerMenu : Window
     {
-        static Socket tcpSocket;
+        static private Socket tcpSocket;
         public MultiplayerMenu()
         {
             InitializeComponent();
@@ -96,20 +98,54 @@ namespace TilTakToe.XAML.Windows
                 string message = data.ToString();
                 string[] dividedMessage = message.Split(" ");
 
-                ServerNameFromServerTextBox.Text = dividedMessage[0];
-                IpFromServerTextBox.Text = dividedMessage[1];
+                if(dividedMessage.Length == 2)
+                {
+                    ServerNameFromServerTextBox.Text = dividedMessage[0];
+                    IpFromServerTextBox.Text = dividedMessage[1];
 
-                var style = (Style)FindResource("GreenButtonStyle");
-                Button connectToServerButton = XAMLObjects.GetServerConnectionButton(style);
+                    var style = (Style)FindResource("GreenButtonStyle");
+                    Button connectToServerButton = XAMLObjects.GetServerConnectionButton(style);
+                    connectToServerButton.Click += ConnectToServerButton_Click;
 
-                MultiplayerMenuGrid.Children.Add(connectToServerButton);
-                Grid.SetColumn(connectToServerButton, 2);
-                Grid.SetRow(connectToServerButton, 3);
+                    MultiplayerMenuGrid.Children.Add(connectToServerButton);
+                    Grid.SetColumn(connectToServerButton, 2);
+                    Grid.SetRow(connectToServerButton, 3);
+                }
+                else
+                {
+                    ServerNameFromServerTextBox.Text = " ";
+                    IpFromServerTextBox.Text = " ";
 
-                await listener.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes("Success")), SocketFlags.None);
-
+                    Button connectToServerButton = (Button)MultiplayerMenuGrid.Children
+                        .OfType<Button>()
+                        .FirstOrDefault(x => x.Name == "ConnectToServerButton");
+                    if (connectToServerButton != null)
+                    {
+                        MultiplayerMenuGrid.Children.Remove(connectToServerButton);
+                    }
+                }
+                 
                 listener.Shutdown(SocketShutdown.Both);
                 listener.Close();
+            }
+        }
+        public void ConnectToServerButton_Click(object sender, RoutedEventArgs e)
+        {
+            const string ip = "127.0.0.1";
+            const int port = 8090;
+            var message = "connect";
+
+            Server.SendMessageAsync(port, ip, message);
+
+            ServerNameFromServerTextBox.Text = " ";
+            IpFromServerTextBox.Text = " ";
+
+            Button connectToServerButton = (Button)MultiplayerMenuGrid.Children
+                .OfType<Button>()
+                .FirstOrDefault(x => x.Name == "ConnectToServerButton");
+            if (connectToServerButton != null)
+            {
+                MultiplayerMenuGrid.Children.Remove(connectToServerButton);
             }
         }
     }

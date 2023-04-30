@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using TilTakToe.Classes.StaticClasses.Web;
+using TilTakToe.XAML.Windows;
 
 namespace TilTakToe.Classes.StaticClasses
 {

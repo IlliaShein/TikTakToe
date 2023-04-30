@@ -43,6 +43,13 @@ namespace TilTakToe.XAML.Windows
             var message = ServerNameTextBox.Text + " " + ip;
 
             Server.SendMessageAsync(port, ip, message);
+
+            WaitingOpponentScreen waitingOpponentScreen = new WaitingOpponentScreen();
+            waitingOpponentScreen.Left = this.Left;
+            waitingOpponentScreen.Top = this.Top;
+
+            waitingOpponentScreen.Show();
+            this.Close();
         }
     }
 }

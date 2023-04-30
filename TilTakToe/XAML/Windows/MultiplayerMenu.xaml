@@ -6,7 +6,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TilTakToe.XAML.Windows"
         mc:Ignorable="d"
-        Title="MultiplayerMenu" Height="450" Width="400"
+        Title="MultiplayerMenu"
+        Height="450"
+        Width="400"
         WindowStyle="None">
 
     <Window.Resources>

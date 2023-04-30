@@ -6,13 +6,12 @@ using TilTakToe.XAML.Windows;
 
 namespace TilTakToe
 {
-    public partial class MainWindow : Window
+    public partial class StartWindow : Window
     {
-        public bool CrossTurn { get; set; }
+        public bool CrossTurn { get; set; } = true;
 
-        public MainWindow()
+        public StartWindow()
         {
-            CrossTurn = true;
             InitializeComponent();
             MessageTextBlock.Text = WhosTurn();
         }
@@ -133,17 +132,17 @@ namespace TilTakToe
 
         private void MinimizeButon_Click(object sender, RoutedEventArgs e)
         {
-            GeneralMethods.MinimizeWindow(StartWindow);
+            GeneralMethods.MinimizeWindow(startWindow);
         }
 
         private void MenuBorder_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            GeneralMethods.HoldAndMoveWindow(StartWindow);
+            GeneralMethods.HoldAndMoveWindow(startWindow);
         }
 
         private void MultiplayerButton_Click(object sender, RoutedEventArgs e)
         {
-            MultiplayerMenu multiplayerMenu = new MultiplayerMenu();
+            MultiplayerWindow multiplayerMenu = new MultiplayerWindow();
             multiplayerMenu.Left = this.Left;
             multiplayerMenu.Top = this.Top;
             multiplayerMenu.Show();

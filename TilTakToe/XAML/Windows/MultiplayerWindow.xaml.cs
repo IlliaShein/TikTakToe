@@ -11,10 +11,10 @@ using TilTakToe.Classes.StaticClasses.Web;
 
 namespace TilTakToe.XAML.Windows
 {
-    public partial class MultiplayerMenu : Window
+    public partial class MultiplayerWindow : Window
     {
         static private Socket tcpSocket;
-        public MultiplayerMenu()
+        public MultiplayerWindow()
         {
             InitializeComponent();
 
@@ -31,19 +31,19 @@ namespace TilTakToe.XAML.Windows
 
         private void MinimizeButon_Click(object sender, RoutedEventArgs e)
         {
-            GeneralMethods.MinimizeWindow(MultiplayerWindow);
+            GeneralMethods.MinimizeWindow(multiplayerWindow);
         }
 
         private void MenuBorder_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            GeneralMethods.HoldAndMoveWindow(MultiplayerWindow);
+            GeneralMethods.HoldAndMoveWindow(multiplayerWindow);
         }
 
         private void SingleplayerButton_Click(object sender, RoutedEventArgs e)
         {
             tcpSocket.Close();
 
-            MainWindow mainWindow = new MainWindow();
+            StartWindow mainWindow = new StartWindow();
             mainWindow.Left = this.Left;
             mainWindow.Top = this.Top;
             mainWindow.Show();
@@ -147,6 +147,15 @@ namespace TilTakToe.XAML.Windows
             {
                 MultiplayerMenuGrid.Children.Remove(connectToServerButton);
             }
+
+            tcpSocket.Close();
+
+            MultiplayerGameWindow multiplayerGameWindow = new MultiplayerGameWindow();
+            multiplayerGameWindow.Left = this.Left;
+            multiplayerGameWindow.Top = this.Top;
+            multiplayerGameWindow.Show();
+
+            this.Close();
         }
     }
 }

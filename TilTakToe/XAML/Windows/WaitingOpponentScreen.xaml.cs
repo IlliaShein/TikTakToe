@@ -79,10 +79,10 @@ namespace TilTakToe.XAML.Windows
             listener.Close();
             tcpSocket.Close();
 
-            CreateServerWindow createServerWindow = new CreateServerWindow();
-            createServerWindow.Left = this.Left;
-            createServerWindow.Top = this.Top;
-            createServerWindow.Show();
+            MultiplayerGameWindow multiplayerGameWindow = new MultiplayerGameWindow();
+            multiplayerGameWindow.Left = this.Left;
+            multiplayerGameWindow.Top = this.Top;
+            multiplayerGameWindow.Show();
 
             this.Close();
         }

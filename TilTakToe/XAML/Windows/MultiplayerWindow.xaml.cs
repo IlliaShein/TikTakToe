@@ -136,6 +136,7 @@ namespace TilTakToe.XAML.Windows
             var message = "connect";
 
             Server.SendMessageAsync(port, ip, message);
+            tcpSocket.Close();
 
             ServerNameFromServerTextBox.Text = " ";
             IpFromServerTextBox.Text = " ";
@@ -143,17 +144,19 @@ namespace TilTakToe.XAML.Windows
             Button connectToServerButton = (Button)MultiplayerMenuGrid.Children
                 .OfType<Button>()
                 .FirstOrDefault(x => x.Name == "ConnectToServerButton");
+
+
+            Server.PlayerSideIsToes = true;
+            MultiplayerGameWindow multiplayerGameWindow = new MultiplayerGameWindow();
+            multiplayerGameWindow.Left = this.Left;
+            multiplayerGameWindow.Top = this.Top;
+
+
+            multiplayerGameWindow.Show();
             if (connectToServerButton != null)
             {
                 MultiplayerMenuGrid.Children.Remove(connectToServerButton);
             }
-
-            tcpSocket.Close();
-
-            MultiplayerGameWindow multiplayerGameWindow = new MultiplayerGameWindow();
-            multiplayerGameWindow.Left = this.Left;
-            multiplayerGameWindow.Top = this.Top;
-            multiplayerGameWindow.Show();
 
             this.Close();
         }

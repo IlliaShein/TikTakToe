@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TilTakToe.Classes.StaticClasses;
 using TilTakToe.Classes.StaticClasses.Web;
+using TilTakToe.XAML.Windows.LittleWindows;
 
 namespace TilTakToe.XAML.Windows
 {
@@ -15,33 +18,47 @@ namespace TilTakToe.XAML.Windows
         private Socket tcpSocket { get; set; }
         public bool CrossTurn { get; set; } = true;
         public string PlayerSide { get; set; }
-        
-        int port;
-        int portTo;
 
         public MultiplayerGameWindow()
         {
+            GeneralMethods.CloseMultiplayerGameWindow = false;
             InitializeComponent();
+            CheckingCloseMultiplayerGameWindowAsync();
 
-            if(Server.PlayerSideIsToes)
+            if (Server.PlayerSideIsToes)
             {
                 PlayerSide = "Toes";
-                port = 8080;
-                portTo = 8090;
+                GeneralMethods.Port = 8080;
+                GeneralMethods.PortTo = 8090;
             }
             else
             {
                 PlayerSide = "Crosses";
-                port = 8090;
-                portTo = 8080;
+                GeneralMethods.Port = 8090;
+                GeneralMethods.PortTo = 8080;
             }
 
             WriteStatus();
             if ((PlayerSide == "Toes" && CrossTurn) || (PlayerSide == "Crosses" && !CrossTurn))
             {
-                WaitingForTurnChangeAsync(port, "127.0.0.1");
+                WaitingForTurnChangeAsync(GeneralMethods.Port, "127.0.0.1");
             }
         }
+
+        public async Task CheckingCloseMultiplayerGameWindowAsync()
+        {
+            while (true)
+            {
+                if (GeneralMethods.CloseMultiplayerGameWindow == true)
+                {
+                    tcpSocket.Close();
+                    this.Close();
+                }
+
+                await Task.Delay(100);
+            }
+        }
+
 
         public async void WaitingForTurnChangeAsync(int port, string ip )
         {
@@ -82,12 +99,11 @@ namespace TilTakToe.XAML.Windows
 
             if(dividedMessage.Length == 1)
             {
-                StartWindow mainWindow = new StartWindow();
-                mainWindow.Left = this.Left;
-                mainWindow.Top = this.Top;
-                mainWindow.Show();
+                OpponentExitGameWondow opponentExitGameWondow = new OpponentExitGameWondow();
+                opponentExitGameWondow.Left = this.Left;
+                opponentExitGameWondow.Top = this.Top;
+                opponentExitGameWondow.Show();
 
-                this.Close();
                 return;
             }
 
@@ -136,11 +152,11 @@ namespace TilTakToe.XAML.Windows
 
             if ((PlayerSide == "Crosses" && CrossTurn) || (PlayerSide == "Toes" && !CrossTurn))
             {
-                Image image = CellProcessing.GetCellImageForMultiplayer(MainMultiplayerGrid, (Border)sender, portTo);
+                Image image = CellProcessing.GetCellImageForMultiplayer(MainMultiplayerGrid, (Border)sender, GeneralMethods.PortTo);
                 SetPathToCrossOrToeImage(image);
                 WriteStatus();
 
-                WaitingForTurnChangeAsync(port, "127.0.0.1");
+                WaitingForTurnChangeAsync(GeneralMethods.Port, "127.0.0.1");
             }
         }
 
@@ -235,16 +251,18 @@ namespace TilTakToe.XAML.Windows
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            tcpSocket.Close();
+            try
+            {
+                tcpSocket.Close();
+            }
+            catch(Exception)
+            { 
+            }
 
-            Server.SendMessageAsync(portTo,"127.0.0.1","Close");
-
-            StartWindow mainWindow = new StartWindow();
-            mainWindow.Left = this.Left;
-            mainWindow.Top = this.Top;
-            mainWindow.Show();
-
-            this.Close();
+            AreYouSureWindow areYouSureWindow = new AreYouSureWindow();
+            areYouSureWindow.Left = this.Left;
+            areYouSureWindow.Top = this.Top;
+            areYouSureWindow.Show();
         }
     }
 }

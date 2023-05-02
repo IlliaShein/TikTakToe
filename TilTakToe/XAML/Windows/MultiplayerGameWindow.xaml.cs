@@ -2,8 +2,6 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,11 +12,10 @@ namespace TilTakToe.XAML.Windows
 {
     public partial class MultiplayerGameWindow : Window
     {
-        private Socket tcpSocket;
-
+        private Socket tcpSocket { get; set; }
         public bool CrossTurn { get; set; } = true;
         public string PlayerSide { get; set; }
-
+        
         int port;
         int portTo;
 
@@ -82,6 +79,17 @@ namespace TilTakToe.XAML.Windows
             string message = data.ToString();
 
             string[] dividedMessage = message.Split(" ");
+
+            if(dividedMessage.Length == 1)
+            {
+                StartWindow mainWindow = new StartWindow();
+                mainWindow.Left = this.Left;
+                mainWindow.Top = this.Top;
+                mainWindow.Show();
+
+                this.Close();
+                return;
+            }
 
             Image image = null;
             foreach (var child in MainMultiplayerGrid.Children)
@@ -228,6 +236,8 @@ namespace TilTakToe.XAML.Windows
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             tcpSocket.Close();
+
+            Server.SendMessageAsync(portTo,"127.0.0.1","Close");
 
             StartWindow mainWindow = new StartWindow();
             mainWindow.Left = this.Left;

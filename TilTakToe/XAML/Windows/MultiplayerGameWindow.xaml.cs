@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -100,8 +99,9 @@ namespace TilTakToe.XAML.Windows
             if(dividedMessage.Length == 1)
             {
                 OpponentExitGameWondow opponentExitGameWondow = new OpponentExitGameWondow();
-                opponentExitGameWondow.Left = this.Left;
-                opponentExitGameWondow.Top = this.Top;
+                opponentExitGameWondow.Left = this.Left + this.Width / 2 - opponentExitGameWondow.Width / 2;
+                opponentExitGameWondow.Top = this.Top + this.Height / 2 - opponentExitGameWondow.Height / 2;
+
                 opponentExitGameWondow.Show();
 
                 return;
@@ -260,8 +260,8 @@ namespace TilTakToe.XAML.Windows
             }
 
             AreYouSureWindow areYouSureWindow = new AreYouSureWindow();
-            areYouSureWindow.Left = this.Left;
-            areYouSureWindow.Top = this.Top;
+            areYouSureWindow.Left = this.Left + this.Width/2 - areYouSureWindow.Width/2;
+            areYouSureWindow.Top = this.Top + this.Height/2 - areYouSureWindow.Height/2;
             areYouSureWindow.Show();
         }
     }

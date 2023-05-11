@@ -31,8 +31,8 @@ namespace TilTakToe.XAML.Windows.LittleWindows
             Server.SendMessageAsync(GeneralMethods.PortTo, "127.0.0.1", "Close");
 
             StartWindow startWindow = new StartWindow();
-            startWindow.Left = this.Left;
-            startWindow.Top = this.Top;
+            startWindow.Left = this.Left + this.Width/2 - startWindow.Width/2;
+            startWindow.Top = this.Top + this.Height/2 - startWindow.Height/2;
             startWindow.Show();
 
             GeneralMethods.CloseMultiplayerGameWindow = true;

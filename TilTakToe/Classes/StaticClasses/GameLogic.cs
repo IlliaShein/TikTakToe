@@ -6,15 +6,15 @@ namespace TilTakToe.Classes.StaticClasses
     {
         public static void SetPathToCrossOrToeImage(Image image)
         {
-            if (GlobalVariebles.CrossTurn)
+            if (GameVariebles.CrossTurn)
             {
                 image.Source = ImagesURI.CrosPath;
-                GlobalVariebles.CrossTurn = !GlobalVariebles.CrossTurn;
+                GameVariebles.CrossTurn = !GameVariebles.CrossTurn;
             }
             else
             {
                 image.Source = ImagesURI.ToePath;
-                GlobalVariebles.CrossTurn = !GlobalVariebles.CrossTurn;
+                GameVariebles.CrossTurn = !GameVariebles.CrossTurn;
             }
         }
 
@@ -68,7 +68,7 @@ namespace TilTakToe.Classes.StaticClasses
 
         public static string WhosTurn()
         {
-            if (GlobalVariebles.CrossTurn)
+            if (GameVariebles.CrossTurn)
             {
                 return "Cross move";
             }

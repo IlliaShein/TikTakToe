@@ -28,7 +28,7 @@ namespace TilTakToe.XAML.Windows.LittleWindows
 
         private void YesButton_Click(object sender, RoutedEventArgs e)
         {
-            Server.SendMessageAsync(GeneralMethods.PortTo, "127.0.0.1", "Close");
+            Server.SendMessageAsync(SocketsInfo.PortTo, "127.0.0.1", "Close");
 
             StartWindow startWindow = new StartWindow();
             startWindow.Left = this.Left + this.Width/2 - startWindow.Width/2;

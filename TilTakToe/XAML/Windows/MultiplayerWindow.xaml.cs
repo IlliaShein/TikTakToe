@@ -146,7 +146,7 @@ namespace TilTakToe.XAML.Windows
                 .FirstOrDefault(x => x.Name == "ConnectToServerButton");
 
 
-            Server.PlayerSideIsToes = true;
+            GameVariebles.PlayerSideIsToes = true;
             MultiplayerGameWindow multiplayerGameWindow = new MultiplayerGameWindow();
             multiplayerGameWindow.Left = this.Left;
             multiplayerGameWindow.Top = this.Top;

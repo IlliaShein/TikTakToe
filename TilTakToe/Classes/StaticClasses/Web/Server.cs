@@ -7,7 +7,6 @@ namespace TilTakToe.Classes.StaticClasses.Web
 {
     public static class Server
     {
-        public static bool PlayerSideIsToes { get; set; } = false;
         public static async void SendMessageAsync(int port, string ip ,string message )
         {
             var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);

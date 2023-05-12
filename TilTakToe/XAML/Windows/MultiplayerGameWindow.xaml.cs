@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TilTakToe.Classes.StaticClasses;
+
 using TilTakToe.Classes.StaticClasses.Web;
 using TilTakToe.XAML.Windows.LittleWindows;
 
@@ -19,28 +20,28 @@ namespace TilTakToe.XAML.Windows
 
         public MultiplayerGameWindow()
         {
-            GlobalVariebles.CrossTurn = true;
+            GameVariebles.CrossTurn = true;
             GeneralMethods.CloseMultiplayerGameWindow = false;
             InitializeComponent();
             CheckingCloseMultiplayerGameWindowAsync();
 
-            if (Server.PlayerSideIsToes)
+            if (GameVariebles.PlayerSideIsToes)
             {
                 PlayerSide = "Toes";
-                GeneralMethods.Port = 8080;
-                GeneralMethods.PortTo = 8090;
+                SocketsInfo.Port = 8080;
+                SocketsInfo.PortTo = 8090;
             }
             else
             {
                 PlayerSide = "Crosses";
-                GeneralMethods.Port = 8090;
-                GeneralMethods.PortTo = 8080;
+                SocketsInfo.Port = 8090;
+                SocketsInfo.PortTo = 8080;
             }
 
             GameLogic.WriteStatus(MainMultiplayerGrid, MessageTextBlock);
-            if ((PlayerSide == "Toes" && GlobalVariebles.CrossTurn) || (PlayerSide == "Crosses" && !GlobalVariebles.CrossTurn))
+            if ((PlayerSide == "Toes" && GameVariebles.CrossTurn) || (PlayerSide == "Crosses" && !GameVariebles.CrossTurn))
             {
-                WaitingForTurnChangeAsync(GeneralMethods.Port, "127.0.0.1");
+                WaitingForTurnChangeAsync(SocketsInfo.Port, "127.0.0.1");
             }
         }
 
@@ -150,13 +151,13 @@ namespace TilTakToe.XAML.Windows
 
             ((Border)sender).Background = TTTColors.NeutralCellColor;
 
-            if ((PlayerSide == "Crosses" && GlobalVariebles.CrossTurn) || (PlayerSide == "Toes" && !GlobalVariebles.CrossTurn))
+            if ((PlayerSide == "Crosses" && GameVariebles.CrossTurn) || (PlayerSide == "Toes" && !GameVariebles.CrossTurn))
             {
-                Image image = CellProcessing.GetCellImageForMultiplayer(MainMultiplayerGrid, (Border)sender, GeneralMethods.PortTo);
+                Image image = CellProcessing.GetCellImageForMultiplayer(MainMultiplayerGrid, (Border)sender, SocketsInfo.PortTo);
                 GameLogic.SetPathToCrossOrToeImage(image);
                 GameLogic.WriteStatus(MainMultiplayerGrid,MessageTextBlock);
 
-                WaitingForTurnChangeAsync(GeneralMethods.Port, "127.0.0.1");
+                WaitingForTurnChangeAsync(SocketsInfo.Port, "127.0.0.1");
             }
         }
 

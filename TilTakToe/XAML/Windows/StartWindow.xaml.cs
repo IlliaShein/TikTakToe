@@ -10,7 +10,7 @@ namespace TilTakToe
     {
         public StartWindow()
         {
-            GlobalVariebles.CrossTurn = true;
+            GameVariebles.CrossTurn = true;
             InitializeComponent();
             MessageTextBlock.Text = GameLogic.WhosTurn();
         }

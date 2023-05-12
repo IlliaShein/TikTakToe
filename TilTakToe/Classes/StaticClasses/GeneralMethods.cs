@@ -5,8 +5,6 @@ namespace TilTakToe.Classes.StaticClasses
     public static class GeneralMethods
     {
         public static bool CloseMultiplayerGameWindow { get; set; } = false;
-        public static int Port { get; set; }
-        public static int PortTo { get; set; }
         public static void CloseWindow()
         {
             Application.Current.Shutdown();

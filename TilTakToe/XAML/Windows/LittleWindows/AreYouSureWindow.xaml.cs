@@ -29,14 +29,9 @@ namespace TilTakToe.XAML.Windows.LittleWindows
         private void YesButton_Click(object sender, RoutedEventArgs e)
         {
             Server.SendMessageAsync(SocketsInfo.PortTo, "127.0.0.1", "Close");
-
-            StartWindow startWindow = new StartWindow();
-            startWindow.Left = this.Left + this.Width/2 - startWindow.Width/2;
-            startWindow.Top = this.Top + this.Height/2 - startWindow.Height/2;
-            startWindow.Show();
-
             GeneralMethods.CloseMultiplayerGameWindow = true;
-            this.Close();
+
+            WindowsChanging.ChangeWindowFromLittle(this, new StartWindow());
         }
 
         private void NoButton_Click(object sender, RoutedEventArgs e)

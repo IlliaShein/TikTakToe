@@ -97,11 +97,7 @@ namespace TilTakToe.XAML.Windows
 
             if(dividedMessage.Length == 1)
             {
-                OpponentExitGameWindow opponentExitGameWindow = new OpponentExitGameWindow();
-                opponentExitGameWindow.Left = this.Left + this.Width / 2 - opponentExitGameWindow.Width / 2;
-                opponentExitGameWindow.Top = this.Top + this.Height / 2 - opponentExitGameWindow.Height / 2;
-
-                opponentExitGameWindow.Show();
+                WindowsChanging.OpenLittleWindow(this, new OpponentExitGameWindow());
 
                 return;
             }
@@ -184,10 +180,7 @@ namespace TilTakToe.XAML.Windows
             { 
             }
 
-            AreYouSureWindow areYouSureWindow = new AreYouSureWindow();
-            areYouSureWindow.Left = this.Left + this.Width/2 - areYouSureWindow.Width/2;
-            areYouSureWindow.Top = this.Top + this.Height/2 - areYouSureWindow.Height/2;
-            areYouSureWindow.Show();
+            WindowsChanging.OpenLittleWindow(this,new AreYouSureWindow());
         }
     }
 }

@@ -15,11 +15,11 @@ namespace TilTakToe.XAML.Windows
     public partial class MultiplayerGameWindow : Window
     {
         private Socket tcpSocket { get; set; }
-        public bool CrossTurn { get; set; } = true;
         public string PlayerSide { get; set; }
 
         public MultiplayerGameWindow()
         {
+            GlobalVariebles.CrossTurn = true;
             GeneralMethods.CloseMultiplayerGameWindow = false;
             InitializeComponent();
             CheckingCloseMultiplayerGameWindowAsync();
@@ -38,7 +38,7 @@ namespace TilTakToe.XAML.Windows
             }
 
             WriteStatus();
-            if ((PlayerSide == "Toes" && CrossTurn) || (PlayerSide == "Crosses" && !CrossTurn))
+            if ((PlayerSide == "Toes" && GlobalVariebles.CrossTurn) || (PlayerSide == "Crosses" && !GlobalVariebles.CrossTurn))
             {
                 WaitingForTurnChangeAsync(GeneralMethods.Port, "127.0.0.1");
             }
@@ -124,20 +124,20 @@ namespace TilTakToe.XAML.Windows
         {
             if (CellProcessing.IscellEmpty(MainMultiplayerGrid, (Border)sender))
             {
-                ((Border)sender).Background = TTTColors.GetCursorAboceCellColor();
+                ((Border)sender).Background = TTTColors.CursorAboceCellColor;
             }
         }
 
         private void Border_MouseLeave(object sender, MouseEventArgs e)
         {
-            ((Border)sender).Background = TTTColors.GetNeutralCellColor();
+            ((Border)sender).Background = TTTColors.NeutralCellColor;
         }
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (CellProcessing.IscellEmpty(MainMultiplayerGrid, (Border)sender))
             {
-                ((Border)sender).Background = TTTColors.GetCellWhileClickingColor();
+                ((Border)sender).Background = TTTColors.CellWhileClickingColor;
             }
         }
 
@@ -148,9 +148,9 @@ namespace TilTakToe.XAML.Windows
                 return;
             }
 
-            ((Border)sender).Background = TTTColors.GetNeutralCellColor();
+            ((Border)sender).Background = TTTColors.NeutralCellColor;
 
-            if ((PlayerSide == "Crosses" && CrossTurn) || (PlayerSide == "Toes" && !CrossTurn))
+            if ((PlayerSide == "Crosses" && GlobalVariebles.CrossTurn) || (PlayerSide == "Toes" && !GlobalVariebles.CrossTurn))
             {
                 Image image = CellProcessing.GetCellImageForMultiplayer(MainMultiplayerGrid, (Border)sender, GeneralMethods.PortTo);
                 SetPathToCrossOrToeImage(image);
@@ -162,15 +162,15 @@ namespace TilTakToe.XAML.Windows
 
         private void SetPathToCrossOrToeImage(Image image)
         {
-            if (CrossTurn)
+            if (GlobalVariebles.CrossTurn)
             {
-                image.Source = ImagesURI.GetCrosPath();
-                CrossTurn = !CrossTurn;
+                image.Source = ImagesURI.CrosPath;
+                GlobalVariebles.CrossTurn = !GlobalVariebles.CrossTurn;
             }
             else
             {
-                image.Source = ImagesURI.GetToePath();
-                CrossTurn = !CrossTurn;
+                image.Source = ImagesURI.ToePath;
+                GlobalVariebles.CrossTurn = !GlobalVariebles.CrossTurn;
             }
         }
 
@@ -224,7 +224,7 @@ namespace TilTakToe.XAML.Windows
 
         private string WhosTurn()
         {
-            if (CrossTurn)
+            if (GlobalVariebles.CrossTurn)
             {
                 return "Cross move";
             }

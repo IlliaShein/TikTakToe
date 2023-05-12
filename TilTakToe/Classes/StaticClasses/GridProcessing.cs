@@ -51,11 +51,11 @@ namespace TilTakToe.Classes.StaticClasses
                 return;
             }
 
-            if (((Image)element).Source.ToString() == ImagesURI.GetCrosPath().ToString())
+            if (((Image)element).Source.ToString() == ImagesURI.CrosPath.ToString())
             {
                 field[row - 2, col] = 1;
             }
-            else if (((Image)element).Source.ToString() == ImagesURI.GetToePath().ToString())
+            else if (((Image)element).Source.ToString() == ImagesURI.ToePath.ToString())
             {
                 field[row - 2, col] = 2;
             }

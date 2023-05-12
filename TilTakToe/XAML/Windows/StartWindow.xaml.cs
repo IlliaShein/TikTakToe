@@ -8,10 +8,9 @@ namespace TilTakToe
 {
     public partial class StartWindow : Window
     {
-        public bool CrossTurn { get; set; } = true;
-
         public StartWindow()
         {
+            GlobalVariebles.CrossTurn = true;
             InitializeComponent();
             MessageTextBlock.Text = WhosTurn();
         }
@@ -20,20 +19,20 @@ namespace TilTakToe
         {
             if(CellProcessing.IscellEmpty(MainGrid,(Border)sender))
             {
-                ((Border)sender).Background = TTTColors.GetCursorAboceCellColor();
+                ((Border)sender).Background = TTTColors.CursorAboceCellColor;
             }
         }
 
         private void Border_MouseLeave(object sender, MouseEventArgs e)
         {
-            ((Border)sender).Background = TTTColors.GetNeutralCellColor();
+            ((Border)sender).Background = TTTColors.NeutralCellColor;
         }
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (CellProcessing.IscellEmpty(MainGrid, (Border)sender))
             {
-                ((Border)sender).Background = TTTColors.GetCellWhileClickingColor();
+                ((Border)sender).Background = TTTColors.CellWhileClickingColor;
             }
         }
 
@@ -44,25 +43,12 @@ namespace TilTakToe
                 return;
             }
 
-            ((Border)sender).Background = TTTColors.GetNeutralCellColor();
+            ((Border)sender).Background = TTTColors.NeutralCellColor;
 
             Image image = CellProcessing.GetCellImage(MainGrid, (Border)sender);
-            SetPathToCrossOrToeImage(image);
+            GameLogic.SetPathToCrossOrToeImage(image);
 
             WriteStatus();
-        }
-        private void SetPathToCrossOrToeImage(Image image)
-        {
-            if (CrossTurn)
-            {
-                image.Source = ImagesURI.GetCrosPath();
-                CrossTurn = !CrossTurn;
-            }
-            else
-            {
-                image.Source = ImagesURI.GetToePath();
-                CrossTurn = !CrossTurn;
-            }
         }
 
         private void WriteStatus()
@@ -115,7 +101,7 @@ namespace TilTakToe
 
         private string WhosTurn()
         {
-            if (CrossTurn)
+            if (GlobalVariebles.CrossTurn)
             {
                 return "Cross move";
             }

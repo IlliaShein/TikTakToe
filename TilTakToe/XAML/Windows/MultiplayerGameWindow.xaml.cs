@@ -37,7 +37,7 @@ namespace TilTakToe.XAML.Windows
                 GeneralMethods.PortTo = 8080;
             }
 
-            WriteStatus();
+            GameLogic.WriteStatus(MainMultiplayerGrid, MessageTextBlock);
             if ((PlayerSide == "Toes" && GlobalVariebles.CrossTurn) || (PlayerSide == "Crosses" && !GlobalVariebles.CrossTurn))
             {
                 WaitingForTurnChangeAsync(GeneralMethods.Port, "127.0.0.1");
@@ -116,8 +116,8 @@ namespace TilTakToe.XAML.Windows
                 }
             }
 
-            SetPathToCrossOrToeImage(image);
-            WriteStatus();
+            GameLogic.SetPathToCrossOrToeImage(image);
+            GameLogic.WriteStatus(MainMultiplayerGrid, MessageTextBlock);
         }
 
         private void Border_MouseEnter(object sender, MouseEventArgs e)
@@ -153,84 +153,10 @@ namespace TilTakToe.XAML.Windows
             if ((PlayerSide == "Crosses" && GlobalVariebles.CrossTurn) || (PlayerSide == "Toes" && !GlobalVariebles.CrossTurn))
             {
                 Image image = CellProcessing.GetCellImageForMultiplayer(MainMultiplayerGrid, (Border)sender, GeneralMethods.PortTo);
-                SetPathToCrossOrToeImage(image);
-                WriteStatus();
+                GameLogic.SetPathToCrossOrToeImage(image);
+                GameLogic.WriteStatus(MainMultiplayerGrid,MessageTextBlock);
 
                 WaitingForTurnChangeAsync(GeneralMethods.Port, "127.0.0.1");
-            }
-        }
-
-        private void SetPathToCrossOrToeImage(Image image)
-        {
-            if (GlobalVariebles.CrossTurn)
-            {
-                image.Source = ImagesURI.CrosPath;
-                GlobalVariebles.CrossTurn = !GlobalVariebles.CrossTurn;
-            }
-            else
-            {
-                image.Source = ImagesURI.ToePath;
-                GlobalVariebles.CrossTurn = !GlobalVariebles.CrossTurn;
-            }
-        }
-
-        private void WriteStatus()
-        {
-            GameResult result = GridProcessing.GetWinner(MainMultiplayerGrid);
-
-            if (GridProcessing.IsGridFilled(MainMultiplayerGrid))
-            {
-                WriteStatusWhenGridFilled(result);
-                return;
-            }
-
-            if (result == GameResult.Draw)
-            {
-                MessageTextBlock.Text = WhosTurn();
-            }
-            else
-            {
-                WriteStatusBeforeGridFilling(result);
-            }
-        }
-
-        private void WriteStatusWhenGridFilled(GameResult result)
-        {
-            if (result == GameResult.Draw)
-            {
-                MessageTextBlock.Text = "It's draw";
-            }
-            else if (result == GameResult.Cross)
-            {
-                MessageTextBlock.Text = "Crosses win";
-            }
-            else // result == GameResult.Toe
-            {
-                MessageTextBlock.Text = "Toes win";
-            }
-        }
-
-        private void WriteStatusBeforeGridFilling(GameResult result)
-        {
-            if (result == GameResult.Cross)
-            {
-                MessageTextBlock.Text = "Crosses win";
-            }
-            else // result == GameResult.Toe
-            {
-                MessageTextBlock.Text = "Toes win";
-            }
-        }
-
-        private string WhosTurn()
-        {
-            if (GlobalVariebles.CrossTurn)
-            {
-                return "Cross move";
-            }
-            else
-            {
-                return "Toe move";
             }
         }
 

@@ -12,7 +12,7 @@ namespace TilTakToe
         {
             GlobalVariebles.CrossTurn = true;
             InitializeComponent();
-            MessageTextBlock.Text = WhosTurn();
+            MessageTextBlock.Text = GameLogic.WhosTurn();
         }
 
         private void Border_MouseEnter(object sender, MouseEventArgs e)
@@ -48,67 +48,7 @@ namespace TilTakToe
             Image image = CellProcessing.GetCellImage(MainGrid, (Border)sender);
             GameLogic.SetPathToCrossOrToeImage(image);
 
-            WriteStatus();
-        }
-
-        private void WriteStatus()
-        {
-            GameResult result = GridProcessing.GetWinner(MainGrid);
-
-            if (GridProcessing.IsGridFilled(MainGrid))
-            {
-                WriteStatusWhenGridFilled(result);
-                return;
-            }
-            
-            if(result == GameResult.Draw)
-            {
-                MessageTextBlock.Text = WhosTurn();
-            }
-            else
-            {
-                WriteStatusBeforeGridFilling(result);
-            }
-        }
-
-        private void WriteStatusWhenGridFilled(GameResult result)
-        {
-            if (result == GameResult.Draw)
-            {
-                MessageTextBlock.Text = "It's draw";
-            }
-            else if (result == GameResult.Cross)
-            {
-                MessageTextBlock.Text = "Crosses win";
-            }
-            else // result == GameResult.Toe
-            {
-                MessageTextBlock.Text = "Toes win";
-            }
-        }
-
-        private void WriteStatusBeforeGridFilling(GameResult result)
-        {
-            if (result == GameResult.Cross)
-            {
-                MessageTextBlock.Text = "Crosses win";
-            }
-            else // result == GameResult.Toe
-            {
-                MessageTextBlock.Text = "Toes win";
-            }
-        }
-
-        private string WhosTurn()
-        {
-            if (GlobalVariebles.CrossTurn)
-            {
-                return "Cross move";
-            }
-            else
-            {
-                return "Toe move";
-            }
+            GameLogic.WriteStatus(MainGrid,MessageTextBlock);
         }
 
         private void ExitButon_Click(object sender, RoutedEventArgs e)

@@ -68,12 +68,7 @@ namespace TilTakToe
 
         private void MultiplayerButton_Click(object sender, RoutedEventArgs e)
         {
-            MultiplayerWindow multiplayerMenu = new MultiplayerWindow();
-            multiplayerMenu.Left = this.Left;
-            multiplayerMenu.Top = this.Top;
-            multiplayerMenu.Show();
-
-            this.Close();
+            WindowsChanging.ChangeWindow(this, new MultiplayerWindow());
         }
     }
 }

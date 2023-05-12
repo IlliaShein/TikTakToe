@@ -29,12 +29,7 @@ namespace TilTakToe.XAML.Windows
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            MultiplayerWindow multiplayerMenu = new MultiplayerWindow();
-            multiplayerMenu.Left = this.Left;
-            multiplayerMenu.Top = this.Top;
-
-            multiplayerMenu.Show();
-            this.Close();
+            WindowsChanging.ChangeWindow(this,new MultiplayerWindow());
         }
         private void Create_Click(object sender, RoutedEventArgs e)
         {
@@ -44,12 +39,7 @@ namespace TilTakToe.XAML.Windows
 
             Server.SendMessageAsync(port, ip, message);
 
-            WaitingOpponentScreen waitingOpponentScreen = new WaitingOpponentScreen();
-            waitingOpponentScreen.Left = this.Left;
-            waitingOpponentScreen.Top = this.Top;
-
-            waitingOpponentScreen.Show();
-            this.Close();
+            WindowsChanging.ChangeWindow(this, new WaitingOpponentScreen());
         }
     }
 }

@@ -43,24 +43,14 @@ namespace TilTakToe.XAML.Windows
         {
             tcpSocket.Close();
 
-            StartWindow mainWindow = new StartWindow();
-            mainWindow.Left = this.Left;
-            mainWindow.Top = this.Top;
-            mainWindow.Show();
-
-            this.Close();
+            WindowsChanging.ChangeWindow(this, new StartWindow());
         }
 
         private void CreateGameButton_Click(object sender, RoutedEventArgs e)
         {
             tcpSocket.Close();
 
-            CreateServerWindow createServerWindow = new CreateServerWindow();
-            createServerWindow.Left = this.Left;
-            createServerWindow.Top = this.Top;
-            createServerWindow.Show();
-
-            this.Close();
+            WindowsChanging.ChangeWindow(this, new CreateServerWindow());
         }
 
         public async void ReceiveInfoAboutServerAsync(int port, string ip)
@@ -147,18 +137,13 @@ namespace TilTakToe.XAML.Windows
 
 
             GameVariebles.PlayerSideIsToes = true;
-            MultiplayerGameWindow multiplayerGameWindow = new MultiplayerGameWindow();
-            multiplayerGameWindow.Left = this.Left;
-            multiplayerGameWindow.Top = this.Top;
 
-
-            multiplayerGameWindow.Show();
             if (connectToServerButton != null)
             {
                 MultiplayerMenuGrid.Children.Remove(connectToServerButton);
             }
 
-            this.Close();
+            WindowsChanging.ChangeWindow(this, new MultiplayerGameWindow());
         }
     }
 }

@@ -7,8 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TilTakToe.Classes.StaticClasses;
-
-using TilTakToe.Classes.StaticClasses.Web;
 using TilTakToe.XAML.Windows.LittleWindows;
 
 namespace TilTakToe.XAML.Windows

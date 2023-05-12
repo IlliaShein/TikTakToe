@@ -24,12 +24,7 @@ namespace TilTakToe.XAML.Windows
 
             tcpSocket.Close();
 
-            CreateServerWindow createServerWindow = new CreateServerWindow();
-            createServerWindow.Left = this.Left;
-            createServerWindow.Top = this.Top;
-            createServerWindow.Show();
-
-            this.Close();
+            WindowsChanging.ChangeWindow(this, new CreateServerWindow());
         }
 
         private void MenuBorder_MouseDown(object sender, MouseButtonEventArgs e)
@@ -79,12 +74,7 @@ namespace TilTakToe.XAML.Windows
             listener.Close();
             tcpSocket.Close();
 
-            MultiplayerGameWindow multiplayerGameWindow = new MultiplayerGameWindow();
-            multiplayerGameWindow.Left = this.Left;
-            multiplayerGameWindow.Top = this.Top;
-            multiplayerGameWindow.Show();
-
-            this.Close();
+            WindowsChanging.ChangeWindow(this, new MultiplayerGameWindow());
         }
     }
 }

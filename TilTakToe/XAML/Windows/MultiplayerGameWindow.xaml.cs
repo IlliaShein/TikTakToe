@@ -98,11 +98,11 @@ namespace TilTakToe.XAML.Windows
 
             if(dividedMessage.Length == 1)
             {
-                OpponentExitGameWondow opponentExitGameWondow = new OpponentExitGameWondow();
-                opponentExitGameWondow.Left = this.Left + this.Width / 2 - opponentExitGameWondow.Width / 2;
-                opponentExitGameWondow.Top = this.Top + this.Height / 2 - opponentExitGameWondow.Height / 2;
+                OpponentExitGameWindow opponentExitGameWindow = new OpponentExitGameWindow();
+                opponentExitGameWindow.Left = this.Left + this.Width / 2 - opponentExitGameWindow.Width / 2;
+                opponentExitGameWindow.Top = this.Top + this.Height / 2 - opponentExitGameWindow.Height / 2;
 
-                opponentExitGameWondow.Show();
+                opponentExitGameWindow.Show();
 
                 return;
             }

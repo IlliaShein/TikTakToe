@@ -4,9 +4,9 @@ using TilTakToe.Classes.StaticClasses;
 
 namespace TilTakToe.XAML.Windows.LittleWindows
 {
-    public partial class OpponentExitGameWondow : Window
+    public partial class OpponentExitGameWindow : Window
     {
-        public OpponentExitGameWondow()
+        public OpponentExitGameWindow()
         {
             InitializeComponent();
         }
@@ -17,12 +17,12 @@ namespace TilTakToe.XAML.Windows.LittleWindows
 
         private void MinimizeButon_Click(object sender, RoutedEventArgs e)
         {
-            GeneralMethods.MinimizeWindow(opponentExitGameWondow);
+            GeneralMethods.MinimizeWindow(opponentExitGameWindow);
         }
 
         private void MenuBorder_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            GeneralMethods.HoldAndMoveWindow(opponentExitGameWondow);
+            GeneralMethods.HoldAndMoveWindow(opponentExitGameWindow);
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -30,10 +30,11 @@ namespace TilTakToe.XAML.Windows.LittleWindows
             GeneralMethods.CloseMultiplayerGameWindow = true;
 
             StartWindow startWindow = new StartWindow();
-            startWindow.Left = this.Left + this.Width/2 - startWindow.Width/2;
-            startWindow.Top = this.Top + this.Height/2 - startWindow.Height/2;
+            startWindow.Left = this.Left + this.Width / 2 - startWindow.Width / 2;
+            startWindow.Top = this.Top + this.Height / 2 - startWindow.Height / 2;
             startWindow.Show();
 
+            GeneralMethods.CloseMultiplayerGameWindow = true;
             this.Close();
         }
     }

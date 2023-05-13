@@ -25,5 +25,14 @@ namespace TilTakToe.Classes.StaticClasses.Web
             {
             }
         }
+
+        public static void InitializeSocket(ref Socket socket, int port, string ip)
+        {
+            var EndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket.Bind(EndPoint);
+            socket.Listen(6);
+        }
     }
 }

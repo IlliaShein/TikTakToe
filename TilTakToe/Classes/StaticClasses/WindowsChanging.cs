@@ -29,5 +29,7 @@ namespace TilTakToe.Classes.StaticClasses
 
             newWindow.Show();
         }
+
+        
     }
 }

@@ -44,13 +44,7 @@ namespace TilTakToe.XAML.Windows
 
         public async void ReceiveInfoAboutConnectionAsync(int port, string ip)
         {
-
-            var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
-
-            tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            tcpSocket.Bind(tcpEndPoint);
-            tcpSocket.Listen(6);
-
+            Server.InitializeSocket(ref tcpSocket, port, ip);
             Socket listener;
 
             while (true)
@@ -63,10 +57,6 @@ namespace TilTakToe.XAML.Windows
                 {
                     return;
                 }
-
-                var buffer = new byte[256];
-                await listener.ReceiveAsync(new ArraySegment<byte>(buffer), SocketFlags.None);
-
                 break;
             }
 

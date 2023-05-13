@@ -10,6 +10,14 @@ namespace TilTakToe.XAML.Windows.LittleWindows
         {
             InitializeComponent();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralMethods.CloseMultiplayerGameWindow = true;
+
+            WindowsChanging.ChangeWindowFromLittle(this, new StartWindow());
+        }
+
         private void ExitButon_Click(object sender, RoutedEventArgs e)
         {
             GeneralMethods.CloseWindow();
@@ -23,13 +31,6 @@ namespace TilTakToe.XAML.Windows.LittleWindows
         private void MenuBorder_MouseDown(object sender, MouseButtonEventArgs e)
         {
             GeneralMethods.HoldAndMoveWindow(opponentExitGameWindow);
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            GeneralMethods.CloseMultiplayerGameWindow = true;
-
-            WindowsChanging.ChangeWindowFromLittle(this, new StartWindow());
         }
     }
 }

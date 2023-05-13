@@ -7,13 +7,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TilTakToe.Classes.StaticClasses;
+using TilTakToe.Classes.StaticClasses.Web;
 using TilTakToe.XAML.Windows.LittleWindows;
 
 namespace TilTakToe.XAML.Windows
 {
     public partial class MultiplayerGameWindow : Window
     {
-        private Socket tcpSocket { get; set; }
+        private Socket tcpSocket;
         public string PlayerSide { get; set; }
 
         public MultiplayerGameWindow()
@@ -60,12 +61,7 @@ namespace TilTakToe.XAML.Windows
 
         public async void WaitingForTurnChangeAsync(int port, string ip )
         {
-            var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
-
-            tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            tcpSocket.Bind(tcpEndPoint);
-            tcpSocket.Listen(6);
-
+            Server.InitializeSocket(ref tcpSocket, port, ip);
             Socket listener;
 
             try

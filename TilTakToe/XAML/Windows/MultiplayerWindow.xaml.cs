@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows;
@@ -55,12 +54,7 @@ namespace TilTakToe.XAML.Windows
 
         public async void ReceiveInfoAboutServerAsync(int port, string ip)
         {
-            var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
-
-            tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            tcpSocket.Bind(tcpEndPoint);
-            tcpSocket.Listen(6);
-
+            Server.InitializeSocket(ref tcpSocket, port, ip);
             Socket listener;
 
             while (true)
